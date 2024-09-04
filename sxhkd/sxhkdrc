@@ -1,0 +1,20 @@
+XF86MonBrightness{Up,Down}  
+	brightnessctl s 10{+,-}  
+
+XF86Audio{Raise,Lower}Volume
+	pamixer -{i,d} 10
+
+XF86AudioMute  
+	pamixer --toggle-mute
+
+super + shift + m
+	~/.scripts/SRS.sh
+
+super + shift + l
+	slock
+
+Print
+	maim -s | tee ~/Pictures/$(date +%s).png | xclip -selection clipboard -t image/png
+
+super + shift + k
+	~/.scripts/screenkey.sh
