@@ -1,0 +1,31 @@
+--local leader
+vim.g.mapleader = " "
+vim.g.maplocalleader = ","
+--Neotree
+vim.keymap.set("n", "<C-n>", ":Neotree<CR>")
+
+--split window
+vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
+vim.keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
+vim.keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" })
+vim.keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
+
+--split navigation
+vim.keymap.set("n", "<leader>ml", "<C-w>l", { desc = "Move right" })
+vim.keymap.set("n", "<leader>mh", "<C-w>h", { desc = "Move left" })
+vim.keymap.set("n", "<leader>mj", "<C-w>j", { desc = "Move down" })
+vim.keymap.set("n", "<leader>mk", "<C-w>k", { desc = "Move Up" })
+
+--tabs
+vim.keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" })
+vim.keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" })
+vim.keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" })
+vim.keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" })
+vim.keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previoes tab" })
+
+--gcc for commenting a sigle line
+--gc for commenting a selection in visual mode
+-- fm for formatting 
+--gd for going to defination
+--<C-o> to return back
+-- <leader>rn to rename a variable for intire project
