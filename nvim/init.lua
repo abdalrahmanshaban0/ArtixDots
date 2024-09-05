@@ -11,7 +11,6 @@ vim.cmd("set relativenumber")
 
 --cursor
 vim.cmd("set cursorline")
-vim.cmd("set cursorcolumn")
 
 --spliting
 vim.cmd("set splitright")
