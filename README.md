@@ -180,7 +180,7 @@ $ maim -s | tee ~/Pictures/$(date +%s).png | xclip -selection clipboard -t image
 ```
 ## nvim
 ```shell
-sudo pacman -S lua luarocks repgrep
+sudo pacman -S neovim
 #https://www.youtube.com/watch?v=6pAG3BHurdM
 
 #install LazyVim (plugin manager for nvim)
