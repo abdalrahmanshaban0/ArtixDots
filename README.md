@@ -1,3 +1,4 @@
+# Installing Artix Linux
 First, You can login as 
 -> root
 -> artix
