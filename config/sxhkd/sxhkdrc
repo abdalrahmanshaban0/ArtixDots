@@ -2,10 +2,10 @@ XF86MonBrightness{Up,Down}
 	brightnessctl s 10{+,-}  
 
 XF86Audio{Raise,Lower}Volume
-	pamixer -{i,d} 10
+	pamixer -{i,d} 10 && killall -s USR1 slstatus
 
 XF86AudioMute  
-	pamixer --toggle-mute
+	pamixer --toggle-mute && killall -s USR1 slstatus
 
 super + shift + m
 	~/.scripts/SRS.sh
@@ -18,3 +18,6 @@ Print
 
 super + shift + k
 	~/.scripts/screenkey.sh
+
+super + e
+  thunar
