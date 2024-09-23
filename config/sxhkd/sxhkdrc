@@ -7,6 +7,9 @@ XF86Audio{Raise,Lower}Volume
 XF86AudioMute  
 	pamixer --toggle-mute && killall -s USR1 slstatus
 
+super + r
+  rofi -show drun
+
 super + shift + m
 	~/.scripts/SRS.sh
 
