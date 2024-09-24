@@ -70,6 +70,9 @@ static const struct arg args[] = {
 	{ run_command,	"Mem: %s/",	"free -mh --si | grep '^Mem:' | awk '{print $3}'"},
 	{ run_command,	"%sG | ", "free | grep '^Mem:' | awk '{printf \"'%.3g'\", $2/1048576}'"},
 	{ cpu_perc,	"CPU: %s%% ",	NULL},
-	{ temp,	"- %s°C | ",	"/sys/class/thermal/thermal_zone2/temp"},
-	{ run_command,	"  %s   ",	"pamixer --get-volume"},
+	{ run_command,	"- %s | ",	"sensors |grep -Po 'Tctl:        \\K.*'"},
+//	{ temp,	"- %s°C | ",	"/sys/class/thermal/thermal_zone2/temp"},
+	{ run_command,	"  %s ",	"pamixer --get-volume"},
+	{ battery_state, " |  %s", "BAT0" },
+	{ battery_perc, 	"%s%%      ","BAT0"  },
 };
