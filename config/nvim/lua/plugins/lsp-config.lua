@@ -33,12 +33,12 @@ return {
 			})
 			lspconfig.cmake.setup({})
 
-			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
-			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
-			vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})
-			vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, {})
-			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
-			vim.keymap.set("n", "ca", vim.lsp.buf.code_action, {})
+			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "about" })
+			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "go to definition" })
+			vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "go to implementation" })
+			vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, { desc = "type definition" })
+			vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "rename variable" })
+			vim.keymap.set("n", "ca", vim.lsp.buf.code_action, { desc = "code action" })
 		end,
 	},
 }
