@@ -22,7 +22,12 @@ vim.keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current bu
 vim.keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" })
 vim.keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" })
 vim.keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previoes tab" })
-vim.keymap.set("n", "<F9>", "<cmd>wa | !g++ %<CR>", { desc = "Compile and run cpp file" })
+-- vim.keymap.set("n", "<F9>", "<cmd>wa | !g++ %<CR>", { desc = "Compile and run cpp file" })
+
+--Competitive Programming
+vim.keymap.set("n", "<leader>rr", "<cmd>CompetiTest run<CR>", { desc = "Compile and run cpp file for CP" })
+vim.keymap.set("n", "<leader>rc", "<cmd>CompetiTest receive contest<CR>", { desc = "receive contest" })
+vim.keymap.set("n", "<leader>rp", "<cmd>CompetiTest receive problem<CR>", { desc = "receive problem" })
 
 --gcc for commenting a sigle line
 --gc for commenting a selection in visual mode
