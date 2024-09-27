@@ -2,8 +2,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 --Neotree
-vim.keymap.set("n", "<C-n>", ":Neotree<CR>")
-
+vim.keymap.set("n", "<C-n>", ":Neotree toggle<CR>")
 --split window
 vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
 vim.keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
