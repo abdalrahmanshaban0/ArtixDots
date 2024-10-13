@@ -6,4 +6,5 @@ sxhkd & #kemaps daemon
 ~/.fehbg & #screen wallpaper
 picom & #Compositor
 xset s 3600 & #screen blank duration
+blueman-applet #bluetooth
 setxkbmap us,ara -option grp:alt_shift_toggle & #add Arabic layout
