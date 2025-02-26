@@ -27,7 +27,7 @@
     width = 300
 
     # The height of a single notification, excluding the frame.
-    height = (0, 300)
+    height = (55, 300)
 
     # Position the notification in the top right corner
     origin = top-right
@@ -39,7 +39,7 @@
     scale = 0
 
     # Maximum number of notification (0 means no limit)
-    notification_limit = 20
+    notification_limit = 5
 
     ### Progress bar ###
 
@@ -103,7 +103,7 @@
     frame_width = 1
 
     # Defines color of the frame around the notification window.
-    frame_color = "#730077"
+    frame_color = "#8839ef"
 
     # Size of gap to display between notifications - requires a compositor.
     # If value is greater than 0, separator_height will be ignored and a border
@@ -230,7 +230,7 @@
     max_icon_size = 128
 
     # Paths to default icons (only necessary when not using recursive icon lookup)
-    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    icon_path = /usr/share/icons/hicolor/16x16
 
     ### History ###
 
