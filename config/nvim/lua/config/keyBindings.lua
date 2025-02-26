@@ -29,8 +29,8 @@ vim.keymap.set("n", "<leader>rr", "<cmd>CompetiTest run<CR>", { desc = "Compile 
 vim.keymap.set("n", "<leader>rc", "<cmd>CompetiTest receive contest<CR>", { desc = "receive contest" })
 vim.keymap.set("n", "<leader>rp", "<cmd>CompetiTest receive problem<CR>", { desc = "receive problem" })
 -- Competitive Programming (test cases)
-vim.keymap.set("n", "<leader>ta", "<cmd>CompetiTest add_testcase<CR>", { desc = "Add testcase" })
-vim.keymap.set("n", "<leader>te", "<cmd>CompetiTest edit_testcase<CR>", { desc = "Edit testcase" })
+vim.keymap.set("n", "<leader>at", "<cmd>CompetiTest add_testcase<CR>", { desc = "Add testcase" })
+vim.keymap.set("n", "<leader>et", "<cmd>CompetiTest edit_testcase<CR>", { desc = "Edit testcase" })
 
 
 --gcc for commenting a sigle line
