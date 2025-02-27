@@ -10,7 +10,7 @@ $ rfkill unblock wifi
 $ wpa_cli
 $ scan
 $ scan_results
-$ add network
+$ add_network
 0, 1, 2, ...
 $ set_network 0 ssid "NETWORK NAME"
 $ set_network 0 psk "NETWORK PASS"
@@ -58,7 +58,7 @@ $ vim /etc/hosts
 ```
 ## Install some packages
 ```shell
-$ pacman -S grub efibootmgr linux-headers
+$ pacman -S grub os-prober efibootmgr linux-headers
 ```
 ## Install Grub
 ```shell
@@ -76,7 +76,7 @@ $ vim /etc/sudoers
 ## Installing some packages
 ```shell
 $ pacman -s xf86-video-intel xorg-server networkmanager networkmanager-runit network-manager-applet git xdg-utils xdg-user-dirs
-$ ln -s /etc/runit/sv/NetworkManager/ /run/runit/service/NetworkManager
+$ ln -s /etc/runit/sv/NetworkManager/ /run/runit/service/
 ```
 ## Reboot
 
