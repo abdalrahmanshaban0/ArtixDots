@@ -10,7 +10,7 @@ $ rfkill unblock wifi
 $ wpa_cli
 $ scan
 $ scan_results
-$ add network
+$ add_network
 0, 1, 2, ...
 $ set_network 0 ssid "NETWORK NAME"
 $ set_network 0 psk "NETWORK PASS"
