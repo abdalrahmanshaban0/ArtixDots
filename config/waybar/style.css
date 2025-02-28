@@ -1,7 +1,7 @@
 * {
-	font-family: JetBrainsMono, Symbols Nerd Font;
+	font-family: JetBrainsMono;
 	font-weight: bold;
-	font-size: 14px;
+	font-size: 13px;
 	min-height: 0;
 }
 
@@ -18,19 +18,19 @@
 
 
 window#waybar {
-	border-radius: 20;
-	background-color: @bg;
+	border-radius: 20px;
+	background-color: rgba(30, 30, 46, 0.7);
 }
 
 
 
 #custom-menu {
-	padding: 2 15;
-	margin: 5 5 5 10;
+	padding: 2px 15px;
+	margin: 5px 5px 5px 10px;
 	color: @vl;
 	background-color: @bg2;
 	border: none;
-	border-radius: 20;
+	border-radius: 20px;
 }
 #custom-menu:hover {
 	color: @fl;
@@ -38,12 +38,12 @@ window#waybar {
 
 
 #workspaces {
-	padding: 2 15;
-	margin: 5;
+	padding: 2px 15px;
+	margin: 5px;
 	color: @fg;
 	background-color: @bg2;
 	border: none;
-	border-radius: 20;
+	border-radius: 20px;
 }
 button {
 	box-shadow: inset 0 -3px transparent;
@@ -70,20 +70,20 @@ button:hover {
 }
 
 #window {
-	padding: 2 15;
-	margin: 5;
+	padding: 2px 15px;
+	margin: 5px;
 	color: @yellow;
 	background-color: @bg2;
 	border: none;
-	border-radius: 20;
+	border-radius: 20px;
 }
 #pulseaudio {
-	padding: 2 15;
-	margin: 5;
+	padding: 2px 15px;
+	margin: 5px;
 	color: @fg;
 	background-color: @bg2;
 	border: none;
-	border-radius: 20;
+	border-radius: 20px;
 }
 #pulseaudio.muted {
 	color: @red;
@@ -92,60 +92,77 @@ button:hover {
 	color: @yellow;
 }
 #prayer_timer {
-	padding: 2 15;
-	margin: 5;
+	padding: 2px 15px;
+	margin: 5px;
 	color: @fg;
 	background-color: @bg2;
 	border: none;
-	border-radius: 20;
+	border-radius: 20px;
 }
 #cpu {
-	padding: 2 15;
-	margin: 5;
+	padding: 2px 15px;
+	margin: 5px;
 	color: @fg;
 	background-color: @bg2;
 	border: none;
-	border-radius: 20;
-}
-#memory {
-	padding: 2 15;
-	margin: 5;
-	color: @fg;
-	background-color: @bg2;
-	border: none;
-	border-radius: 20;
+	border-radius: 20px;
 }
 #temperature {
-	padding: 2 15;
-	margin: 5;
+	padding: 2px 15px;
+	margin: 5px;
 	color: @fg;
 	background-color: @bg2;
 	border: none;
-	border-radius: 20;
+	border-radius: 20px;
 }
-#clock {
-	padding: 2 15;
-	margin: 5;
+#memory {
+	padding: 2px 15px;
+	margin: 5px;
 	color: @fg;
 	background-color: @bg2;
 	border: none;
-	border-radius: 20;
+	border-radius: 20px;
+}
+
+#clock {
+	padding: 2px 15px;
+	margin: 5px;
+	color: @fg;
+	background-color: @bg2;
+	border: none;
+	border-radius: 20px;
 }
 #battery {
-	padding: 2 15;
-	margin: 5;
+	padding: 2px 15px;
+	margin: 5px;
 	color: @fg;
 	background-color: @bg2;
 	border: none;
-	border-radius: 20;
+	border-radius: 20px;
 }
 #tray {
-	padding: 2 15;
-	margin: 5;
+	padding: 2px 15px;
+	margin: 5px;
 	color: @fg;
 	background-color: @bg2;
 	border: none;
-	border-radius: 20;
+	border-radius: 20px;
+}
+#custom-wlogout {
+	padding: 2px 15px;
+	margin: 5px;
+	color: @fg;
+	background-color: @bg2;
+	border: none;
+	border-radius: 20px;
+}
+#custom-pipewire {
+	padding: 2px 15px;
+	margin: 5px;
+	color: @fg;
+	background-color: @bg2;
+	border: none;
+	border-radius: 20px;
 }
 #clock:hover {
 	/* color: @yellow; */

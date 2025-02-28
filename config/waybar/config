@@ -1,25 +1,22 @@
 {
-     "layer": "top", // Waybar at top layer
-     "position": "top", // Waybar position (top|bottom|left|right)
-//    "height": 32, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
-    "spacing": 4, // Gaps between modules (4px)
-    // Choose the order of the modules
-    "modules-left": ["hyprland/workspaces"],
-    "modules-center": ["clock"],
-    "modules-right": ["prayer_timer","pulseaudio", "cpu", "memory", "temperature", "battery", "tray"],
-    // Modules configuration
-    "hyprland/window":{
-	"max-length": 50,
-},
+  "layer": "top",
+  "position": "top",
+  "spacing": 1,
+  "modules-left": ["custom/wlogout", "hyprland/workspaces"],
+  "modules-center": ["custom/waypaper", "clock"],
+  "modules-right": ["prayer_timer","pulseaudio", "memory", "cpu", "temperature", "battery", "tray"],
 
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10
-    },
+  "hyprland/window":{
+	  "max-length": 50,
+  },
+
+  "tray": {
+      // "icon-size": 21,
+      "spacing": 10
+  },
 
   "clock": {
-	"interval":1,
+	  "interval":1,
   	"format": "{:%I:%M:%S %p  %A %d %b %y}",
   	"tooltip-format": "<tt><small>{calendar}</small></tt>",
   	"calendar": {
@@ -45,65 +42,70 @@
   	}
   },
 
-   "cpu": {
-	"interval": 1,
-        "format": "{usage}% {max_frequency}GHz ",
-        "tooltip": true
-    },
+  "cpu": {
+	  "interval": 1,
+    "format": "{usage}% {max_frequency}GHz ",
+    "tooltip": true
+  },
     
-    "memory": {
-	"interval": 1,
-        "format": "{used}/{total}Gb "
-    },
+  "memory": {
+	  "interval": 1,
+    "format": "{used}/{total}Gb "
+  },
 
-    "temperature": {
-        "interval": 1,
-        "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
-        "critical-threshold": 90,
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
-    },
-    "prayer_timer":{
-        "file-path": "/home/abdalrahman/.src/Islamic-Prayer-Timings/next"
-    },
+  "temperature": {
+    "interval": 1,
+    "hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+    "critical-threshold": 90,
+    "format": "{temperatureC}°C {icon}",
+    "format-icons": ["", "", ""]
+  },
+    
+  "prayer_timer":{
+    "file-path": "/home/abdalrahman/.src/Islamic-Prayer-Timings/next"
+  },
 
-    "battery": {
-        "bat": "BAT0",
-        "interval" : 1,
-        "format-discharging": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% {icon}  " ,
-        "format-icons": ["", "", "", "", ""],
-        "on-click": "echo $((1^$(cat /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode))) > /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode"
-    },
+  "battery": {
+    "bat": "BAT0",
+    "interval" : 1,
+    "format-discharging": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% {icon}  " ,
+    "format-icons": ["", "", "", "", ""],
+    "on-click": "sudo /home/abdalrahman/.config/waybar/scripts/conservation_mode.sh"
+  },
 
-    "pulseaudio": {
-        "scroll-step": 5, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
+  "pulseaudio": {
+    "scroll-step": 5, // %, can be a float
+    "format": "{volume}% {icon} {format_source}",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-bluetooth-muted": " {icon} {format_source}",
+    "format-muted": " {format_source}",
+    "format-source": "{volume}% ",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+      },
         "on-click": "pavucontrol"
     },
-    "hyprland/language": {
-        "format": "{short}",
-    },
-}
 
-"backlight/slider": {
-    "min": 0,
-    "max", 100,
-    "orientation": "horizontal",
-    //"device": ""
+  "custom/wlogout": {
+    "format": " {}",
+    "on-click": "wlogout -b 4",
+  },
+  "custom/waypaper": {
+    "format": " {}",
+    "on-click": "waypaper",
+  },
+  "custom/nvidia": {
+    "exec": "nvidia-smi --query-gpu=utilization.gpu,temperature.gpu --format=csv,nounits,noheader | sed 's/\\([0-9]\\+\\), \\([0-9]\\+\\)/\\1% 🌡️\\2°C/g'",
+    "format": "{} gpu ",
+    "interval": 2
+  }
 }
