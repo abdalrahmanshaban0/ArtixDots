@@ -1,4 +1,21 @@
 # Installing Artix Linux
+## Choosing distro
+- It depends on your experience with Linux
+	- Beginner ? Mint : Arch
+- If you know what you're doing, Arch is very very stable.
+
+- Arch with no systemd == Artix
+- Why Arch ? 
+	- Rolling release (No versions, No major upgrades, Bleeding edge)
+	- Good {Wiki, Community, AUR}
+- Why not systemd ? 
+	- I noticed it uses more memory and causing some problems
+	- It's in the sucks page in suckless.
+	- Use runit instead.
+## Little tip for troubleshooting 
+- Open programs in terminal (Ex. Davinci Resolve)
+
+## Artix Linux Installation Guide
 First, You can login as 
 -> root
 -> artix
@@ -10,7 +27,7 @@ $ rfkill unblock wifi
 $ wpa_cli
 $ scan
 $ scan_results
-$ add_network
+$ add network
 0, 1, 2, ...
 $ set_network 0 ssid "NETWORK NAME"
 $ set_network 0 psk "NETWORK PASS"
@@ -40,9 +57,9 @@ $ mount /dev/sda1 /mnt/boot/efi
 ```
 ## Install base packages
 ```shell
-$ basestrap /mnt base base-devel runit elogind-runit linux linux-firmware vim intel-ucode
+$ basestrap /mnt base base-devel runit elogind-runit linux linux-firmware vim intel-ucode grub efibootmgr linux-headers
 ```
-## fstab, clock, locale, hostname, hosts
+## fstab, clock, locale, hostname
 ```shell
 $ fstabgen -U /mnt >> /mnt/etc/fstab
 $ artix-chroot /mnt
@@ -54,11 +71,6 @@ $ vim /etc/locale.conf
 	-> LANG=en_US.UTF-8
 $ vim /etc/hostname
 	-> HOSTNAME
-$ vim /etc/hosts
-```
-## Install some packages
-```shell
-$ pacman -S grub os-prober efibootmgr linux-headers
 ```
 ## Install Grub
 ```shell
@@ -75,8 +87,8 @@ $ vim /etc/sudoers
 
 ## Installing some packages
 ```shell
-$ pacman -s xf86-video-intel xorg-server networkmanager networkmanager-runit network-manager-applet git xdg-utils xdg-user-dirs
-$ ln -s /etc/runit/sv/NetworkManager/ /run/runit/service/
+pacman -s xf86-video-intel xorg-server networkmanager networkmanager-runit network-manager-applet git xdg-utils xdg-user-dirs
+ln -s /etc/runit/sv/NetworkManager/ /run/runit/service/NetworkManager
 ```
 ## Reboot
 
@@ -86,24 +98,36 @@ $ nmtui
 ```
 ## Post Installation
 ```shell
-$ sudo pacman -Syu libxft libxinerama xorg-xinit libxrandr xorg-xrandr noto-fonts noto-fonts-emoji noto-fonts-cjk ttf-dejavu ttf-liberation ttf-jetbrains-mono ttf-hack-nerd dunst ttf-nerd-fonts-symbols feh pulseaudio firefox mpv cmus yt-dlp pavucontrol pamixer
+echo "Installing xorg needed stuff.."
+sudo pacman -Syu libxft libxinerama xorg-xinit libxrandr xorg-xrandr
 
-$ mkdir ~/.src
-$ cd ~/.src
-$ git clone https://git.suckless.org/dwm
-$ git clone https://git.suckless.org/st
-$ git clone https://git.suckless.org/dmenu
-$ git clone https://git.suckless.org/slstatus
-$ cd dwm/
-$ sudo make clean install
-$ cd ../st
-$ sudo make clean install
-$ cd ../slstatus
-$ sudo make clean install
-$ cd ../dmenu
-$ sudo make clean install
-$ cd
-$ echo dwm >> .xinitrc
+echo "Installing some fonts.."
+sudo pacman -S noto-fonts noto-fonts-emoji noto-fonts-cjk ttf-dejavu ttf-liberation ttf-jetbrains-mono ttf-hack-nerd ttf-nerd-fonts-symbols
+
+echo "Installing my packages.."
+sudo pacman -S dunst feh pulseaudio firefox mpv yt-dlp pavucontrol pamixer
+
+echo "Installing suckless tools.."
+mkdir ~/.src
+cd ~/.src
+git clone https://git.suckless.org/dwm
+git clone https://git.suckless.org/st
+git clone https://git.suckless.org/dmenu
+git clone https://git.suckless.org/slstatus
+cd dwm/
+echo "Installing dwm.."
+sudo make clean install
+cd ../st
+echo "Installing st.."
+sudo make clean install
+cd ../slstatus
+echo "Installing slstatus.."
+sudo make clean install
+cd ../dmenu
+echo "Installing dmenu.."
+sudo make clean install
+cd
+echo dwm >> .xinitrc
 ```
 ## Fix Screen tearing
 ```
@@ -120,9 +144,13 @@ EndSection
 
 ## sddm 
 ```shell
-$ sudo pacman -S sddm sddm-runit
-$ sudo ln -s /etc/runit/sv/sddm /run/runit/service/
-$ sudo mkdir /usr/share/xsessions
+sudo pacman -S sddm sddm-runit qt5-declarative
+sudo ln -s /etc/runit/sv/sddm /run/runit/service/
+sudo mkdir /usr/share/xsessions
+
+# Add a theme
+yay -S catppuccin-sddm-theme-mocha
+
 ```
 ```
 #/usr/share/xsessions/dwm.desktop
@@ -139,18 +167,17 @@ Type=XSession
 ```
 https://wiki.artixlinux.org/Main/Repositories
 ```
-
-## sxhkd & screenlock & SRS (Shutdown, Reboot, Suspend) | demnu
+## sxhkd & screenlock & SRS (Shutdown, Reboot, Suspend) | demnu (Only for X)
 ```shell
-$ sudo pacman -S sxhkd slock xss-lock
-$ mkdir ~/.config/sxhkd
+sudo pacman -S sxhkd slock xss-lock
+mkdir ~/.config/sxhkd
 #Auto start this command:
-	$ xss-lock --transfer-sleep-lock -- slock
+	xss-lock --transfer-sleep-lock -- slock
 ## Add your first script!
-$ mkdir ~/.scripts
-$ vim ~/.scripts/SRS.sh
-$ echo -e "poweroff\nreboot\nsuspend" | dmenu | xargs loginctl
-$ chmod +x ~/.scripts/SRS.sh
+mkdir ~/.scripts
+vim ~/.scripts/SRS.sh
+echo -e "poweroff\nreboot\nsuspend" | dmenu | xargs loginctl
+chmod +x ~/.scripts/SRS.sh
 
 #Add your first keybinding!
 #~/.config/sxhkd/sxhkdrc
@@ -162,26 +189,32 @@ super + shift + l
 
 ## File manager (thunar)
 ```shell
-$ sudo pacman -S thunar gvfs gvfs-mtp thunar-volman ffmpegthumbnailer tumbler man-db lsd zathura zathura-pdf-mupdf 
+sudo pacman -S thunar gvfs gvfs-mtp thunar-volman ffmpegthumbnailer tumbler man-db lsd zathura zathura-pdf-mupdf 
 ```
 ## Archiving
 ```shell
-$ sudo pacman -S bzip2 gzip xztar p7zip unrar zip unzip
+sudo pacman -S bzip2 gzip xztar p7zip unrar zip unzip
 ```
-## ScreenKey & ScreenShots & compositor
+## ScreenKey & ScreenShots & compositor (Only for X)
 ```shell
-$ sudo pacman -S slop screenkey maim xclip picom
+sudo pacman -S slop screenkey maim xclip picom
 #For screenkey
-$ screenkey -g $(slop -n -f '%g')
+screenkey -g $(slop -n -f '%g')
 #for screenshot
-$ maim -s | tee ~/Pictures/$(date +%s).png | xclip -selection clipboard -t image/png
+maim -s | tee ~/Pictures/$(date +%s).png | xclip -selection clipboard -t image/png
 #Auto start picom
 #Add keybinding for screenshot
 #Add keybinding for toggle script for screenkey
 ```
+## Bluetooth
+```shell
+sudo pacman -S bluez bluez-runit bluez-utils bluez-obex blueman
+sudo ln -s /etc/runit/sv/bluetoothd /run/runit/service
+#autostart blueman-applet
+```
 ## nvim
 ```shell
-sudo pacman -S neovim
+sudo pacman -S lua luarocks repgrep nvim gvim
 #https://www.youtube.com/watch?v=6pAG3BHurdM
 
 #install LazyVim (plugin manager for nvim)
@@ -228,4 +261,72 @@ https://github.com/folke/which-key.nvim
 https://github.com/szw/vim-maximizer
 #lualine
 https://github.com/nvim-lualine/lualine.nvim
+```
+
+## Wayland Programs
+### Terminal
+```shell
+sudo pacman -S alacritty
+```
+### Notification daemon
+```shell
+sudo pacman -S mako jq
+```
+### Clipboard
+```shell
+sudo pacman -S wl-clipboard wl-clip-persist
+yay -S clipse-bin
+```
+In ~/.conf/hypr/hyprland.conf
+```
+exec-once = clipse -listen
+
+windowrulev2 = float, title:(clipse)
+windowrulev2 = size 622 652, title:(clipse)
+windowrulev2 = stayfocused, title:(clipse)
+
+bind = $mainMod SHIFT, V, exec, foot -T clipse -e clipse
+```
+### Audio
+```shell
+# Install xdg-desktop-portal-hyprland if you don't have it already
+# https://wiki.artixlinux.org/Site/PipewireInsteadPulseaudio
+sudo pacman -S pipewire pipewire-pulse pipewire-alsa wireplumber pavucontrol
+# add this to hyprland.conf :
+# exec-once = pipewire & pipewire-pulse & wireplumber
+```
+### Authentication for GUI apps
+```shell
+sudo pacman -S hyprpolkitagent
+# exec-once = /usr/libexec/hyprpolkitagent
+```
+### روشنة
+```shell
+yay -S cava
+sudo pacman -S neofetch cmatrix nwg-dock-hyprland
+```
+### Themes & wallpapers
+```shell
+yay -S nwg-look catppuccin-gtk-theme-macchiato papirus-icon-theme swww waypaper qt5-declarative
+
+# You can copy nerd font symbols from :
+# https://www.nerdfonts.com/cheat-sheet
+
+# SDDM theme:
+https://store.kde.org/p/1312658
+# extract it to /usr/share/sddm/themes
+
+# /etc/sddm.conf
+```
+```
+[Theme]
+Current=sugar-candy
+```
+### Screenshots
+```shell
+sudo pacman -S grim slurp
+```
+## Other programs
+```shell
+yay -S brave-bin lazygit telegram-desktop nlohmann-json glib2-devel qt5-wayland qt6-wayland wlogout htop playerctl obsidian hyprlock
 ```
