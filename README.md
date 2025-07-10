@@ -112,7 +112,7 @@ sudo make clean install
 cd
 echo dwm >> .xinitrc
 ```
-## Fix Screen tearing
+### Fix Screen tearing
 ```
 --> /etc/X11/xorg.conf.d/20-intel.conf
 Section "Device"
@@ -125,7 +125,7 @@ Section "Device"
 EndSection
 ```
 
-## sddm 
+### sddm 
 ```shell
 sudo pacman -S sddm sddm-runit qt5-declarative
 sudo ln -s /etc/runit/sv/sddm /run/runit/service/
@@ -146,11 +146,11 @@ Icon=dwm
 Type=XSession
 ```
 
-## Enable arch-support
+### Enable arch-support
 ```
 https://wiki.artixlinux.org/Main/Repositories
 ```
-## sxhkd & screenlock & SRS (Shutdown, Reboot, Suspend) | demnu (Only for X)
+### sxhkd & screenlock & SRS (Shutdown, Reboot, Suspend) | demnu (Only for X)
 ```shell
 sudo pacman -S sxhkd slock xss-lock
 mkdir ~/.config/sxhkd
@@ -170,15 +170,15 @@ super + shift + l
 	slock
 ```
 
-## File manager (thunar)
+### File manager (thunar)
 ```shell
 sudo pacman -S thunar gvfs gvfs-mtp thunar-volman ffmpegthumbnailer tumbler man-db lsd zathura zathura-pdf-mupdf 
 ```
-## Archiving
+### Archiving
 ```shell
 sudo pacman -S bzip2 gzip xztar p7zip unrar zip unzip
 ```
-## ScreenKey & ScreenShots & compositor (Only for X)
+### ScreenKey & ScreenShots & compositor (Only for X)
 ```shell
 sudo pacman -S slop screenkey maim xclip picom
 #For screenkey
@@ -189,127 +189,18 @@ maim -s | tee ~/Pictures/$(date +%s).png | xclip -selection clipboard -t image/p
 #Add keybinding for screenshot
 #Add keybinding for toggle script for screenkey
 ```
-## Bluetooth
+### Bluetooth
 ```shell
 sudo pacman -S bluez bluez-runit bluez-utils bluez-obex blueman
 sudo ln -s /etc/runit/sv/bluetoothd /run/runit/service
 #autostart blueman-applet
 ```
-## nvim
+### Notification
 ```shell
-sudo pacman -S lua luarocks repgrep nvim gvim
-#https://www.youtube.com/watch?v=6pAG3BHurdM
-
-#install LazyVim (plugin manager for nvim)
-https://github.com/LazyVim/LazyVim
-#install gruvbox theme (or any theme you like)
-https://github.com/ellisonleao/gruvbox.nvim
-#install telescope
-https://github.com/nvim-telescope/telescope.nvim
-#install treesitter
-https://github.com/nvim-treesitter/nvim-treesitter
-#install neotree
-https://github.com/nvim-neo-tree/neo-tree.nvim
-#install mason
-https://github.com/williamboman/mason.nvim
-#install mason-lsp-config
-https://github.com/williamboman/mason-lspconfig.nvim
-#install nvim-lspconfig
-https://github.com/neovim/nvim-lspconfig
-#install telescope-ui-select
-https://github.com/nvim-telescope/telescope-ui-select.nvim
-#install none-ls
-https://github.com/nvimtools/none-ls.nvim
-#install nvim.cmp
-https://github.com/hrsh7th/nvim-cmp
-#LuaSnip
-https://github.com/L3MON4D3/LuaSnip
-#cmp-nvim-lsp
-https://github.com/hrsh7th/cmp-nvim-lsp
-#friendly snippets
-https://github.com/rafamadriz/friendly-snippets
-#indent-blankline
-https://github.com/lukas-reineke/indent-blankline.nvim
-#nvim.autopairs
-https://github.com/windwp/nvim-autopairs
-#greeter
-https://github.com/goolord/alpha-nvim
-#bufferline
-https://github.com/akinsho/bufferline.nvim
-#dressing 
-https://github.com/stevearc/dressing.nvim
-#whitch-key
-https://github.com/folke/which-key.nvim
-#maxmizer
-https://github.com/szw/vim-maximizer
-#lualine
-https://github.com/nvim-lualine/lualine.nvim
+sudo pacman -S dunst
 ```
 
-## Wayland Programs
-### Terminal
+### Application launcher
 ```shell
-sudo pacman -S alacritty
-```
-### Notification daemon
-```shell
-sudo pacman -S mako jq
-```
-### Clipboard
-```shell
-sudo pacman -S wl-clipboard wl-clip-persist
-yay -S clipse-bin
-```
-In ~/.conf/hypr/hyprland.conf
-```
-exec-once = clipse -listen
-
-windowrulev2 = float, title:(clipse)
-windowrulev2 = size 622 652, title:(clipse)
-windowrulev2 = stayfocused, title:(clipse)
-
-bind = $mainMod SHIFT, V, exec, foot -T clipse -e clipse
-```
-### Audio
-```shell
-# Install xdg-desktop-portal-hyprland if you don't have it already
-# https://wiki.artixlinux.org/Site/PipewireInsteadPulseaudio
-sudo pacman -S pipewire pipewire-pulse pipewire-alsa wireplumber pavucontrol
-# add this to hyprland.conf :
-# exec-once = pipewire & pipewire-pulse & wireplumber
-```
-### Authentication for GUI apps
-```shell
-sudo pacman -S hyprpolkitagent
-# exec-once = /usr/libexec/hyprpolkitagent
-```
-### روشنة
-```shell
-yay -S cava
-sudo pacman -S neofetch cmatrix nwg-dock-hyprland
-```
-### Themes & wallpapers
-```shell
-yay -S nwg-look catppuccin-gtk-theme-macchiato papirus-icon-theme swww waypaper qt5-declarative
-
-# You can copy nerd font symbols from :
-# https://www.nerdfonts.com/cheat-sheet
-
-# SDDM theme:
-https://store.kde.org/p/1312658
-# extract it to /usr/share/sddm/themes
-
-# /etc/sddm.conf
-```
-```
-[Theme]
-Current=sugar-candy
-```
-### Screenshots
-```shell
-sudo pacman -S grim slurp
-```
-## Other programs
-```shell
-yay -S brave-bin lazygit telegram-desktop nlohmann-json glib2-devel qt5-wayland qt6-wayland wlogout htop playerctl obsidian hyprlock
+sudo pacman -S rofi
 ```
